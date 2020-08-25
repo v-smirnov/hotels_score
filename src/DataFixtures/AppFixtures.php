@@ -7,7 +7,7 @@ use App\Entity\Review;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use DateTimeInterface;
-use DateTimeImmutable;
+use DateTime;
 
 class AppFixtures extends Fixture
 {
@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
     {
         for ($i = 0; $i < self::TOTAL_REVIEW_COUNT; $i++) {
             $manager->persist(
-                $this->createReviewEntity($hotelList, new DateTimeImmutable('-2 years'), new DateTimeImmutable())
+                $this->createReviewEntity($hotelList, new DateTime('-2 years'), new DateTime())
             );
         }
     }
@@ -70,6 +70,6 @@ class AppFixtures extends Fixture
     ): DateTimeInterface {
         $randomTimestamp = random_int($earliestReviewDateTime->getTimestamp(), $latestReviewDateTime->getTimestamp());
 
-        return (new DateTimeImmutable())->setTimestamp($randomTimestamp);
+        return (new DateTime())->setTimestamp($randomTimestamp);
     }
 }

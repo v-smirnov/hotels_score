@@ -35,7 +35,7 @@ class Review
     private $comment;
 
     /**
-     * @ORM\Column(type="string", name="created_date")
+     * @ORM\Column(type="datetime", name="created_date")
      */
     private $createdDate;
 
