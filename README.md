@@ -8,11 +8,11 @@
 * ```docker exec -it hotels_score_app bin/console  doctrine:migration:migrate --no-interaction``` - to apply migrations
 (normally should be executed only first time)
 * ```docker exec -it hotels_score_app php -d memory_limit=2048M bin/console doctrine:fixtures:load --no-interaction``` - to load the fixtures
-(every execution of this command remove all records from DB and creates new)
+(every execution of this command remove all records from DB and creates new and it can take some time to load 100000 reviews)
 
 
 ### To call endpoint you should use following url:
-```http://localhost:5555/hotels/61/score/from/2018-04-03%2015:16:17/to/2020-09-01%2015:16:17?offset=0&limit=10```
+```http://localhost:5555/hotels/1/score/from/2018-04-03%2015:16:17/to/2020-09-01%2015:16:17?offset=0&limit=10```
 
 Offset and limit is optional parameters (if they are not presented will be used default values)
 
