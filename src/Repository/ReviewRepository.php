@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Review;
 use App\Repository\Criteria\ReviewCriteria;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 

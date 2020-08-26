@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain\Hotel;
+namespace App\Tests\Unit\Domain\Service\Hotel;
 
-use App\Domain\Hotel\HotelScoreService;
-use App\Domain\Hotel\HotelScoreServiceInterface;
+use App\Domain\Service\Hotel\GetGroupedScoreListService;
+use App\Domain\Service\ServiceInterface;
 use App\Dto\HotelScore\GroupedScore;
 use App\Dto\HotelScore\HotelScoreRequest;
 use App\Dto\HotelScore\HotelScoreResponse;
 use App\Repository\Criteria\ReviewCriteria;
 use App\Repository\ReviewRepositoryInterface;
-use PHPUnit\Framework\TestCase;
 use DateTime;
+use PHPUnit\Framework\TestCase;
 
-class HotelScoreServiceTest extends TestCase
+class GetGroupedScoreListServiceTest extends TestCase
 {
     private const TOTAL_RECORD_COUNT = 10;
 
@@ -32,18 +32,18 @@ class HotelScoreServiceTest extends TestCase
 
     private const END_DATE_TIME = '2020-08-26 00:00:00';
 
-    public function testGettingHotelScoreList(): void
+    public function testGettingHotelGroupedScoreList(): void
     {
         $service = $this->createService();
 
-        $response = $service->getHotelScoreList($this->createHotelScoreRequest());
+        $response = $service->performOperation($this->createHotelScoreRequest());
 
         self::assertEquals($this->createExpectedResponse(), $response);
     }
 
-    private function createService(): HotelScoreServiceInterface
+    private function createService(): ServiceInterface
     {
-        return new HotelScoreService($this->createReviewRepositoryMock(), self::DAYS_TO_GROUPING_PERIOD_MAP);
+        return new GetGroupedScoreListService($this->createReviewRepositoryMock(), self::DAYS_TO_GROUPING_PERIOD_MAP);
     }
 
     private function createReviewRepositoryMock(): ReviewRepositoryInterface

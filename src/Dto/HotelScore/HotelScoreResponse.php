@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Dto\HotelScore;
 
-class HotelScoreResponse
+use App\Dto\ResponseObjectInterface;
+
+class HotelScoreResponse implements ResponseObjectInterface
 {
     /**
      * @var int

@@ -1,3 +1,4 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+hotel_grouped_score_list:
+    path: /hotels/{hotelId}/score/from/{startDateTime}/to/{endDateTime}
+    controller: app.controller.operation.get_hotel_grouled_score_list::performAction
+    methods: GET

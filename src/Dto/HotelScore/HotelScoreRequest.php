@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Dto\HotelScore;
 
+use App\Dto\RequestObjectInterface;
 use DateTime;
 use DateTimeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class HotelScoreRequest
+class HotelScoreRequest implements RequestObjectInterface
 {
     private const DEFAULT_OFFSET = 0;
 

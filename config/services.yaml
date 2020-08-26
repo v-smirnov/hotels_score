@@ -27,10 +27,22 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # Get hotel grouped score list operation
+    app.controller.operation.get_hotel_grouled_score_list:
+        class: App\Controller\OperationController
+        arguments:
+            $httpRequestToRequestObjectTransformer: '@App\Infrastructure\Transformer\Request\Transformer'
+            $validationErrorsToHttpResponseTransformer: '@App\Infrastructure\Transformer\ValidationError\ToJsonResponseTransformer'
+            $service: '@App\Domain\Service\Hotel\GetGroupedScoreListService'
+            $responseObjectToHttpResponseTransformer: '@App\Infrastructure\Transformer\Response\ToJsonResponseTransformer'
 
-    App\Domain\Hotel\HotelScoreService:
+    App\Infrastructure\Transformer\Request\Transformer: ~
+
+    App\Infrastructure\Transformer\ValidationError\ToJsonResponseTransformer: ~
+
+    App\Infrastructure\Transformer\Response\ToJsonResponseTransformer: ~
+
+    App\Domain\Service\Hotel\GetGroupedScoreListService:
         arguments:
             $daysToGroupingPeriodMap:
                 -
@@ -42,6 +54,3 @@ services:
                 -
                     upperLimit: 365000
                     groupingPeriod: month
-
-
-    App\Domain\Hotel\HotelScoreServiceInterface: '@App\Domain\Hotel\HotelScoreService'

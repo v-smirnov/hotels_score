@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Hotel;
+namespace App\Domain\Service\Hotel;
 
+use App\Domain\Service\ServiceInterface;
 use App\Dto\HotelScore\GroupedScore;
 use App\Dto\HotelScore\HotelScoreRequest;
 use App\Dto\HotelScore\HotelScoreResponse;
+use App\Dto\RequestObjectInterface;
+use App\Dto\ResponseObjectInterface;
 use App\Repository\Criteria\ReviewCriteria;
 use App\Repository\ReviewRepositoryInterface;
 use DateTimeInterface;
 
-class HotelScoreService implements HotelScoreServiceInterface
+class GetGroupedScoreListService implements ServiceInterface
 {
-    /**
-     * @var ReviewRepositoryInterface
-     */
-    private $reviewRepository;
+    private ReviewRepositoryInterface $reviewRepository;
 
     /**
      * @var mixed[]
      */
-    private $daysToGroupingPeriodMap;
+    private array $daysToGroupingPeriodMap;
 
     public function __construct(ReviewRepositoryInterface $reviewRepository, array $daysToGroupingPeriodMap)
     {
@@ -29,7 +29,12 @@ class HotelScoreService implements HotelScoreServiceInterface
         $this->daysToGroupingPeriodMap = $daysToGroupingPeriodMap;
     }
 
-    public function getHotelScoreList(HotelScoreRequest $request): HotelScoreResponse
+    /**
+     * @param RequestObjectInterface|HotelScoreRequest $request
+     *
+     * @return ResponseObjectInterface|HotelScoreResponse
+     */
+    public function performOperation(RequestObjectInterface $request): ResponseObjectInterface
     {
         $criteria =  $this->createCriteria($request);
         $groupingPeriod = $this->getGroupingPeriod($request);
@@ -43,11 +48,6 @@ class HotelScoreService implements HotelScoreServiceInterface
             );
     }
 
-    /**
-     * @param HotelScoreRequest $request
-     *
-     * @return ReviewCriteria
-     */
     private function createCriteria(HotelScoreRequest $request): ReviewCriteria
     {
         return
