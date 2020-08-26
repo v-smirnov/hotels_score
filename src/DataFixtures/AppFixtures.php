@@ -11,7 +11,7 @@ use DateTime;
 
 class AppFixtures extends Fixture
 {
-    private const TOTAL_REVIEW_COUNT = 1000;
+    private const TOTAL_REVIEW_COUNT = 100000;
 
     public function load(ObjectManager $manager)
     {
