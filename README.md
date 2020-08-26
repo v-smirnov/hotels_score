@@ -14,7 +14,7 @@
 ### To call endpoint you should use following url:
 ```http://localhost:5555/hotels/1/score/from/2018-04-03%2015:16:17/to/2020-09-01%2015:16:17?offset=0&limit=10```
 
-Offset and limit is optional parameters (if they are not presented will be used default values)
+Offset and limit are optional parameters (if they are not presented will be used default values)
 
 To find out what hotel ids are available you can run following command:
 
