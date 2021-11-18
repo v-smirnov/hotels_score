@@ -1,4 +1,4 @@
-# Hotels_score task implementation
+# Hotels_score
 
 ### To be able to run task you should run following commands:
 
